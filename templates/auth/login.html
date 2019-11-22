@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Login
+{% endblock title%}
+
+{% block body %}
+<div class="form_container">
+    <h1 class="container_title">Login</h1>
+    <form method="post">
+        <input class="box_field" type="text" name="username" id="username" placeholder="Username" required>
+        <input class="box_field" type="password" name="password" id="password" placeholder="Password" required>
+        <input class="submit_button" type="submit" value="Login">
+        <p>Don't have an account? <a href="{{ url_for('register') }}">Register</a></p>
+        <br>
+        <p class="message">{{ message }}</p>
+    </form>
+</div>
+{% endblock body %}

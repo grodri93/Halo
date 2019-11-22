@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Home
+{% endblock title %}
+
+{% block body %}
+<div id="menubar">
+    <ul>
+        <li><a href="#">Halo Project</a></li>
+        <li style="float:right"><a href="/logout">Logout</a></li>
+        <li style="float:right"><a>Welcome, {{ current_user.username }}</a></li>
+    </ul>
+</div>
+<br>
+<div class="form_container" id="set_form">
+    <h1 class="container_title">Set Value</h1>
+    <form action="/" method="POST">
+        <input class="box_field" type="text" name="set_key" id="set_key" placeholder="Key" required>
+        <input class="box_field" type="text" name="set_value" id="value" placeholder="Value" required>
+        <input class="submit_button" type="submit" value="Add Entry">
+    </form>
+    {% if message is not none %}
+            <p>{{ message }}</p>
+    {% endif %}
+</div>
+
+<div class="form_container" id="get_form">
+    <h1 class="container_title">Get Value</h1>
+    <form action="/" method="GET">
+        <input class="box_field" type="text" name="get_key" id="get_key" placeholder="Key" required>
+        <input class="submit_button" type="submit" value="Get Entry">
+    </form>
+    {% if entry is not none %}
+        <table>
+            <tr>
+                <th>Key</th>
+                <th>Value</th>
+                <th>Date Created</th>
+            </tr>
+            <tr>
+                <td>{{ entry.key }}</td>
+                <td>{{ entry.value }}</td>
+                <td>{{ entry.date_created.date() }}</td>
+            </tr>
+        </table>
+    {% elif key is not none %}
+        <p>Entry not found!</p>
+    {% endif %}
+</div>
+
+{% endblock body %}
